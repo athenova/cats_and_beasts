@@ -24,13 +24,21 @@ class Project(Journalist):
                     "topic_image": f"Нарисуй животное породы '{idea['species']}' из рода '{idea['genus']}' семейства '{idea['family']}'. Эстетично, красиво, реалистично, крупным планом",
                     "topic_prompt": f"Расскажи интересный факт о животном породы '{idea['species']}' из рода '{idea['genus']}' семейства '{idea['family']}', используй не более {self.topic_word_limit} слов",
                 }
+    
+    def _task_post_processor(self, tasks, *_):
+        super()._task_post_processor(tasks, *_)
+        tasks_len = len(tasks)
+        offset_to_cat = tasks_len - 261
+        for task in tasks:
+            task['day'] = (task['day'] + offset_to_cat) % tasks_len
 
     def __init__(self, **kwargs):
         super().__init__(
             review_chat_id=-1002374309134,
-            first_post_date=datetime(2025, 2, 18),
+            first_post_date=datetime(2025, 3, 11),
             text_generator=YandexTextGenerator(),
             image_generator=YandexImageGenerator(),
             send_text_with_image=True,
+            topic_word_limit=100,
             **kwargs
         )
