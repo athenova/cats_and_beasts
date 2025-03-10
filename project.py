@@ -22,7 +22,7 @@ class Project(Journalist):
                     "genus": idea['genus'],
                     "species": idea['species'],
                     "topic_image": f"Нарисуй животное породы '{idea['species']}' из рода '{idea['genus']}' семейства '{idea['family']}'. Эстетично, красиво, реалистично, крупным планом",
-                    "topic_prompt": f"Расскажи интересный факт о животном породы '{idea['species']}' из рода '{idea['genus']}' семейства '{idea['family']}'",
+                    "topic_prompt": f"Расскажи интересный факт о животном породы '{idea['species']}' из рода '{idea['genus']}' семейства '{idea['family']}', используй не более {self.topic_word_limit} слов",
                 }
 
     def __init__(self, **kwargs):
