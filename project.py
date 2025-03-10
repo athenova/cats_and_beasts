@@ -31,5 +31,6 @@ class Project(Journalist):
             first_post_date=datetime(2025, 2, 18),
             text_generator=YandexTextGenerator(),
             image_generator=YandexImageGenerator(),
+            send_text_with_image=True,
             **kwargs
         )
