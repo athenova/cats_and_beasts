@@ -1,6 +1,8 @@
 from simple_blogger import Journalist
 from simple_blogger.generators.YandexGenerator import YandexImageGenerator
 from simple_blogger.generators.YandexGenerator import YandexTextGenerator
+from simple_blogger.senders.TelegramSender import TelegramSender
+from simple_blogger.senders.InstagramSender import InstagramSender
 from datetime import datetime
 
 class Project(Journalist):
@@ -34,11 +36,12 @@ class Project(Journalist):
 
     def __init__(self, **kwargs):
         super().__init__(
-            review_chat_id=-1002374309134,
+            
             first_post_date=datetime(2025, 3, 11),
             text_generator=YandexTextGenerator(),
             image_generator=YandexImageGenerator(),
-            send_text_with_image=True,
+            reviewer=TelegramSender(),
+            senders=[TelegramSender(channel_id=f"@cats_and_beasts"), InstagramSender(channel_token_name='CATS_AND_BEASTS_TOKEN')],
             topic_word_limit=100,
             **kwargs
         )
